@@ -1,13 +1,14 @@
 package com.projects.nexify.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.security.PrivateKey;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_role")
-public class Role {
+public class Role implements GrantedAuthority {
 
 
     @Id
@@ -28,6 +29,7 @@ public class Role {
         return id;
     }
 
+    @Override
     public String getAuthority() {
         return authority;
     }
