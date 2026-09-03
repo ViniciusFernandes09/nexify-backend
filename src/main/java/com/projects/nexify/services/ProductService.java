@@ -1,8 +1,10 @@
 package com.projects.nexify.services;
 
 
+import com.projects.nexify.dto.CategoryDTO;
 import com.projects.nexify.dto.ProductDTO;
 import com.projects.nexify.dto.ProductMinDTO;
+import com.projects.nexify.entities.Category;
 import com.projects.nexify.entities.Product;
 import com.projects.nexify.repositories.ProductRepository;
 import com.projects.nexify.services.exceptions.DatabaseException;
@@ -75,5 +77,12 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+
+        entity.getCategories().clear();
+        for (CategoryDTO catDto : dto.getCategories()) {
+            Category cat = new Category();
+            cat.setId(catDto.getId());
+            entity.getCategories().add(cat);
+        }
     }
 }
