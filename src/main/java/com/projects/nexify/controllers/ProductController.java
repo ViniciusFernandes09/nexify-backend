@@ -2,6 +2,7 @@ package com.projects.nexify.controllers;
 
 import com.projects.nexify.dto.CustomError;
 import com.projects.nexify.dto.ProductDTO;
+import com.projects.nexify.dto.ProductMinDTO;
 import com.projects.nexify.services.ProductService;
 import com.projects.nexify.services.exceptions.ResourceNotFoundException;
 import jakarta.validation.Valid;
@@ -30,10 +31,10 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(
+    public ResponseEntity<Page<ProductMinDTO>> findAll(
             @RequestParam(name = "name", defaultValue = "") String name,
             Pageable pageable){
-        Page<ProductDTO> dto = service.findAll(name, pageable);
+        Page<ProductMinDTO> dto = service.findAll(name, pageable);
         return ResponseEntity.ok(dto);
     }
 
