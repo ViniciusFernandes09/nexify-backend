@@ -3,6 +3,7 @@ package com.projects.nexify.dto;
 import com.projects.nexify.entities.Order;
 import com.projects.nexify.entities.OrderItem;
 import com.projects.nexify.entities.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -15,10 +16,13 @@ public class OrderDTO {
     private OrderStatus status;
 
     private ClientDTO client;
-
     private PaymentDTO payment;
 
+    @NotEmpty(message = "Deve ter pelo menos uma categoria")
     private List<OrderItemDTO> items = new ArrayList<>();
+
+    public OrderDTO() {
+    }
 
     public OrderDTO(Long id, Instant moment, OrderStatus status, ClientDTO client, PaymentDTO payment) {
         this.id = id;
@@ -39,6 +43,7 @@ public class OrderDTO {
             items.add(itemDto);
         }
     }
+
 
     public Long getId() {
         return id;
@@ -62,6 +67,31 @@ public class OrderDTO {
 
     public List<OrderItemDTO> getItems() {
         return items;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setMoment(Instant moment) {
+        this.moment = moment;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    public void setClient(ClientDTO client) {
+        this.client = client;
+    }
+
+    public void setPayment(PaymentDTO payment) {
+        this.payment = payment;
+    }
+
+    public void setItems(List<OrderItemDTO> items) {
+        this.items = items;
     }
 
     public Double getTotal() {
