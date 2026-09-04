@@ -10,7 +10,6 @@ public class OrderItemDTO {
     private Integer quantity;
     private String imgUrl;
 
-    // Construtor sem argumentos (Obrigatório para o Jackson)
     public OrderItemDTO() {
     }
 
